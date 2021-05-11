@@ -42,6 +42,21 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         color: 'gray',
     },
+    amenities: {
+        paddingLeft: 5,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    amenitiesItem: {
+        backgroundColor: COLORS.primary,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 10,
+        margin: 5,
+    },
+    amenitiesItemText: {
+        color: 'white',
+    },
 });
 
 export default styles;

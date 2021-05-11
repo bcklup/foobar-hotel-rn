@@ -13,9 +13,6 @@ const Room = props => {
     const { navigation, route } = props;
     const { room } = route.params;
 
-    const sampleText =
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in condimentum massa, in dignissim dolor. Proin tortor tellus, sodales a neque ac, commodo lobortis orci. Curabitur et turpis purus. Aenean quis dictum lorem. Vivamus arcu magna,  dui.';
-
     /* Template */
     return (
         <ScrollView style={globalStyles.mainContainer}>
@@ -36,7 +33,19 @@ const Room = props => {
             <View style={styles.detailsBody}>
                 <View style={styles.sectionContainer}>
                     <Text style={styles.sectionHeader}>Description</Text>
-                    <Text style={styles.summaryText}>{sampleText}</Text>
+                    <Text style={styles.summaryText}>{room.summary}</Text>
+                </View>
+                <View style={styles.sectionContainer}>
+                    <Text style={styles.sectionHeader}>Amenities</Text>
+                    <View style={styles.amenities}>
+                        {room.amenities.map((item, index) => (
+                            <View key={index} style={styles.amenitiesItem}>
+                                <Text style={styles.amenitiesItemText}>
+                                    {item}
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
                 </View>
             </View>
         </ScrollView>
