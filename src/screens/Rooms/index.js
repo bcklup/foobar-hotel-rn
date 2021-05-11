@@ -1,22 +1,55 @@
-import React, { useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+    ActivityIndicator,
+    Alert,
+    FlatList,
+    RefreshControl,
+    Text,
+    View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import globalStyles from '../../assets/css/global-styles';
-// import { useFocusEffect } from '@react-navigation/native';
 
 import useStore from '../../state';
-import COLORS from '../../static/colors';
 import { ROOM_CARD_MODE } from '../../static/enums';
+import RoomsAPI from '../../api/rooms-api';
+
+import globalStyles from '../../assets/css/global-styles';
 import styles from './styles';
 
 import RoomCard from '../../components/RoomCard';
+import COLORS from '../../static/colors';
 
 const Rooms = ({ navigation }) => {
     // state selectors
     const rooms = useStore(state => state.rooms);
+    const setRooms = useStore(state => state.setRooms);
+    const [isLoading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (rooms.length <= 0) {
+            fetchRooms();
+        }
+    }, []);
+
+    /* Funtions */
+    const fetchRooms = async () => {
+        setLoading(true);
+        RoomsAPI.getRooms()
+            .then(res => {
+                console.log('res', res);
+                if (res.status === 200) {
+                    setRooms(res.data);
+                    setLoading(false);
+                }
+            })
+            .catch(e => {
+                setLoading(false);
+                Alert('', 'Error encountered. Please try again later.');
+                console.error('Error fetching media - ', e);
+            });
+    };
 
     /* UI Functions */
-
     const RoomList = () => {
         return (
             <FlatList
@@ -25,11 +58,24 @@ const Rooms = ({ navigation }) => {
                     <RoomCard
                         key={index}
                         mode={ROOM_CARD_MODE.LIST}
-                        data={item}
+                        room={item}
                         navigation={navigation}
                     />
                 )}
-                ListEmptyComponent={() => <RoomListEmptyState />}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isLoading}
+                        onRefresh={fetchRooms}
+                        progressViewOffset={200}
+                    />
+                }
+                ListEmptyComponent={() =>
+                    isLoading ? (
+                        <RoomListLoadingState />
+                    ) : (
+                        <RoomListEmptyState />
+                    )
+                }
                 keyExtractor={(item, index) =>
                     `${item._id}+${index.toString()}`
                 }
@@ -38,6 +84,13 @@ const Rooms = ({ navigation }) => {
             />
         );
     };
+
+    const RoomListLoadingState = () => (
+        <View style={styles.placeholderContainer}>
+            {/* <ActivityIndicator size="large" color={COLORS.primary} /> */}
+            <Text style={styles.placeholderText}>Loading</Text>
+        </View>
+    );
 
     const RoomListEmptyState = () => (
         <View style={styles.placeholderContainer}>

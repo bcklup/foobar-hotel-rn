@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, SafeAreaView } from 'react-native';
+import { StatusBar, View } from 'react-native';
 
 import 'react-native-gesture-handler';
 
@@ -13,9 +13,9 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
                 <Navigation />
-            </SafeAreaView>
+            </View>
         );
     }
 }

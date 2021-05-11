@@ -1,24 +1,105 @@
-import React from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+    ActivityIndicator,
+    Alert,
+    Image,
+    Pressable,
+    ScrollView,
+    Text,
+    View,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-import globalStyles from '../../assets/css/global-styles';
 
 import { ROOM_CARD_MODE } from '../../static/enums';
 import RoomCard from '../../components/RoomCard';
 import styles from './styles';
+import globalStyles from '../../assets/css/global-styles';
+import RoomsAPI from '../../api/rooms-api';
+import COLORS from '../../static/colors';
 
 const Room = props => {
     /* Props and State */
     const { navigation, route } = props;
-    const { room } = route.params;
+    const { roomId } = route.params;
+    const [room, setRoom] = useState();
+    const [isLoading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (!room && roomId) {
+            fetchRoom();
+        }
+    }, [roomId]);
+
+    /* Funtions */
+    const fetchRoom = async () => {
+        setLoading(true);
+        RoomsAPI.getRoom(roomId)
+            .then(res => {
+                console.log('res', res);
+                if (res.status === 200) {
+                    setRoom(res.data);
+                    setLoading(false);
+                }
+            })
+            .catch(e => {
+                setLoading(false);
+                Alert('', 'Error encountered. Please try again later.');
+                console.error('Error fetching media - ', e);
+            });
+    };
+
+    /* UI Functions */
+    const RoomDetails = () => (
+        <View style={styles.detailsBody}>
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionHeader}>Description</Text>
+                <Text style={styles.summaryText}>{room.summary}</Text>
+            </View>
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionHeader}>Amenities</Text>
+                <View style={styles.amenities}>
+                    {room.amenities.map((item, index) => (
+                        <View key={index} style={styles.amenitiesItem}>
+                            <Text style={styles.amenitiesItemText}>{item}</Text>
+                        </View>
+                    ))}
+                </View>
+            </View>
+        </View>
+    );
 
     /* Template */
+    if (isLoading) {
+        return (
+            <View
+                style={{
+                    ...globalStyles.mainContainer,
+                    ...globalStyles.center,
+                }}>
+                <View styles={globalStyles.container}>
+                    <ActivityIndicator size="large" color={COLORS.primary} />
+                    <Text style={styles.loadingIndicator}>Loading...</Text>
+                </View>
+            </View>
+        );
+    } else if (!isLoading && !room) {
+        return (
+            <View
+                style={{
+                    ...globalStyles.mainContainer,
+                    ...globalStyles.center,
+                }}>
+                <View styles={globalStyles.container}>
+                    <Text style={styles.loadingMessage}>Loading...</Text>
+                </View>
+            </View>
+        );
+    }
     return (
         <ScrollView style={globalStyles.mainContainer}>
             <Image
                 source={{
-                    uri: 'https://assets1.hospitalitytech.com/styles/content_md/s3/2018-06/LuMINN%20room%2054.jpg',
+                    uri: room ? room.image : '',
                 }}
                 style={styles.imageHeader}
             />
@@ -28,26 +109,9 @@ const Room = props => {
                 <Icon name="arrow-left" size={25} color="white" />
             </Pressable>
             <View style={styles.cardContainer}>
-                <RoomCard mode={ROOM_CARD_MODE.DETAIL} data={room} />
+                <RoomCard mode={ROOM_CARD_MODE.DETAIL} room={room} />
             </View>
-            <View style={styles.detailsBody}>
-                <View style={styles.sectionContainer}>
-                    <Text style={styles.sectionHeader}>Description</Text>
-                    <Text style={styles.summaryText}>{room.summary}</Text>
-                </View>
-                <View style={styles.sectionContainer}>
-                    <Text style={styles.sectionHeader}>Amenities</Text>
-                    <View style={styles.amenities}>
-                        {room.amenities.map((item, index) => (
-                            <View key={index} style={styles.amenitiesItem}>
-                                <Text style={styles.amenitiesItemText}>
-                                    {item}
-                                </Text>
-                            </View>
-                        ))}
-                    </View>
-                </View>
-            </View>
+            <RoomDetails />
         </ScrollView>
     );
 };

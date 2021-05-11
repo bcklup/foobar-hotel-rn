@@ -99,7 +99,7 @@ const mockRoomsData = [
 ];
 
 const useStore = create(set => ({
-    rooms: mockRoomsData,
+    rooms: [],
     setRooms: rooms => set({ rooms }),
 }));
 

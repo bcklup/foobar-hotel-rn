@@ -8,16 +8,17 @@ import styles from './styles';
 
 const RoomCard = props => {
     /* Props and State */
-    const { mode, navigation, data } = props;
+    const { mode, navigation, room } = props;
 
     /* Methods */
-    const openRoom = () => navigation.navigate(SCENE.ROOM, { room: data }); // TODO: Implement API call to fetch detail
+    const openRoom = () =>
+        navigation.navigate(SCENE.ROOM, { roomId: room._id }); // TODO: Implement API call to fetch detail
 
     /* Template */
     const CardImage = () => (
         <Image
             source={{
-                uri: 'https://insights.ehotelier.com/wp-content/uploads/sites/6/2020/01/hotel-room.jpg',
+                uri: room.thumbnail,
             }}
             style={styles.listCardImage}
         />
@@ -25,24 +26,24 @@ const RoomCard = props => {
 
     const CardContent = () => (
         <View style={styles.listCardContent}>
-            <Text style={styles.listCardTitle}>{data.room_name}</Text>
+            <Text style={styles.listCardTitle}>{room.room_name}</Text>
             <View style={styles.listCardAttributes}>
                 <View style={styles.listCardAttribute}>
                     <Icon name="user" size={15} color="#c23fd1" />
                     <Text style={styles.listCardAttributeLabel}>
-                        {data.accomodation}
+                        {room.accomodation}
                     </Text>
                 </View>
                 <View style={styles.listCardAttribute}>
                     <Icon name="bed" size={15} color="#e8994a" />
                     <Text style={styles.listCardAttributeLabel}>
-                        {data.beds}
+                        {room.beds}
                     </Text>
                 </View>
                 <View style={styles.listCardAttribute}>
                     <Icon name="shower" size={15} color="#e84a4a" />
                     <Text style={styles.listCardAttributeLabel}>
-                        {data.bathrooms}
+                        {room.bathrooms}
                     </Text>
                 </View>
             </View>
@@ -52,7 +53,10 @@ const RoomCard = props => {
     const CardFooter = () => (
         <View style={styles.listCardFooter}>
             <View style={{ justifyContent: 'space-evenly' }}>
-                <Text style={styles.listCardPriceText}>$133</Text>
+                <Text
+                    style={
+                        styles.listCardPriceText
+                    }>{`$${room.costPerNight}`}</Text>
                 <Text style={styles.listCardPriceSubText}>/night</Text>
             </View>
             <TouchableOpacity>

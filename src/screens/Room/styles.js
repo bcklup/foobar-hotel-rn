@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
     amenitiesItemText: {
         color: 'white',
     },
+    loadingMessage: {
+        ...globalStyles.text,
+        color: 'gray',
+        fontSize: 15,
+    },
 });
 
 export default styles;
