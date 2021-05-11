@@ -26,6 +26,22 @@ const styles = StyleSheet.create({
         ...globalStyles.bold,
         color: COLORS.dark,
         fontSize: 20,
+        marginBottom: 10,
+    },
+    listCardAttributes: {
+        flexDirection: 'row',
+        marginLeft: 5,
+    },
+    listCardAttribute: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 30,
+    },
+    listCardAttributeLabel: {
+        ...globalStyles.bold,
+        color: 'gray',
+        fontSize: 15,
+        marginLeft: 5,
     },
     listCardFooter: {
         margin: 15,

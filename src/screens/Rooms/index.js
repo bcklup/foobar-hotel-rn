@@ -6,7 +6,7 @@ import globalStyles from '../../assets/css/global-styles';
 
 import useStore from '../../state';
 import COLORS from '../../static/colors';
-import { SCENE } from '../../static/enums';
+import { ROOM_CARD_MODE, SCENE } from '../../static/enums';
 import styles from './styles';
 
 import RoomCard from '../../components/RoomCard';
@@ -79,7 +79,12 @@ const Rooms = ({ navigation }) => {
             <FlatList
                 data={rooms}
                 renderItem={({ item, index }) => (
-                    <RoomCard key={index} mode="list-item" data={item} />
+                    <RoomCard
+                        key={index}
+                        mode={ROOM_CARD_MODE.LIST}
+                        data={item}
+                        navigation={navigation}
+                    />
                 )}
                 ListEmptyComponent={() => <RoomListEmptyState />}
                 keyExtractor={(item, index) =>

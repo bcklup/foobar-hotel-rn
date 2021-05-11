@@ -1,7 +1,7 @@
 const COLORS = {
     primary: '#33CDFF',
     primary_light: '#84F2FF',
-    secondary: '#F4F7F9',
+    secondary: '#F3740F',
     accent: '#F3740F',
 
     success: '#3FE25A',
