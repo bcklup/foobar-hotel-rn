@@ -24,6 +24,24 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '100%',
     },
+    detailsBody: {
+        marginTop: 90,
+    },
+    sectionContainer: {
+        margin: 15,
+    },
+    sectionHeader: {
+        ...globalStyles.bold,
+        fontSize: 25,
+        color: COLORS.dark,
+        marginBottom: 10,
+    },
+    summaryText: {
+        ...globalStyles.text,
+        fontSize: 17,
+        paddingLeft: 10,
+        color: 'gray',
+    },
 });
 
 export default styles;

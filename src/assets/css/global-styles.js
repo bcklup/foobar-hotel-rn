@@ -2,9 +2,17 @@ import COLORS from '../../static/colors';
 
 export default {
     /* Text */
-    text: { fontFamily: 'Louis George Cafe' },
-    bold: { fontFamily: 'Louis George Cafe Bold' },
-    light: { fontFamily: 'Louis George Cafe Light' },
+    text: { fontSize: 17, color: COLORS.dark, fontFamily: 'Louis George Cafe' },
+    bold: {
+        fontSize: 17,
+        color: COLORS.dark,
+        fontFamily: 'Louis George Cafe Bold',
+    },
+    light: {
+        fontSize: 17,
+        color: COLORS.dark,
+        fontFamily: 'Louis George Cafe Light',
+    },
 
     /* Containers */
     mainContainer: {
