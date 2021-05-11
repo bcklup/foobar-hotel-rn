@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 const Router = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator headerMode="none">
                 <Stack.Screen
                     name={SCENE.ROOMS}
                     options={{ title: 'Rooms' }}
