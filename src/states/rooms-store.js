@@ -1,8 +1,8 @@
 import create from 'zustand';
 
-const useStore = create(set => ({
+const useRoomsStore = create(set => ({
     rooms: [],
     setRooms: rooms => set({ rooms }),
 }));
 
-export default useStore;
+export default useRoomsStore;

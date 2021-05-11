@@ -11,8 +11,6 @@ import Room from './screens/Room';
 import Settings from './screens/Settings';
 import { SCENE } from './static/enums';
 
-// import globalStyles from './assets/css/global-styles';
-
 // Navigators
 const Stack = createStackNavigator();
 
@@ -20,7 +18,7 @@ const Stack = createStackNavigator();
 const Router = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator headerMode="none">
                 <Stack.Screen
                     name={SCENE.ROOMS}
                     options={{ title: 'Rooms' }}

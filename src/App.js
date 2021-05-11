@@ -1,17 +1,31 @@
-import React from 'react';
-import { SafeAreaView } from 'react-native';
-
 import 'react-native-gesture-handler';
+import React from 'react';
+
+// Eva & UI Kittens Setup
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { default as customTheme } from './theme.json';
 
 // navigations
 import Navigation from './Navigation';
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <SafeAreaView style={{ flex: 1 }}>
+// theme store
+import useThemeStore from './states/theme-store';
+
+const App = () => {
+    const theme = useThemeStore(state => state.theme);
+    console.log('theme', theme);
+    return (
+        <>
+            <IconRegistry icons={EvaIconsPack} />
+            <ApplicationProvider
+                {...eva}
+                theme={{ ...eva[theme], ...customTheme }}>
                 <Navigation />
-            </SafeAreaView>
-        );
-    }
-}
+            </ApplicationProvider>
+        </>
+    );
+};
+
+export default App;

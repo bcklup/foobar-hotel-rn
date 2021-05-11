@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, View } from 'react-native';
-import useStore from '../../state';
-
-// import { useFocusEffect } from '@react-navigation/native';
+import { Button, Layout, Text } from '@ui-kitten/components';
+import useRoomStore from '../../states/rooms-store';
+import useThemeStore from '../../states/theme-store';
 
 import { SCENE } from '../../static/enums';
 
@@ -11,8 +10,11 @@ const Rooms = ({ navigation }) => {
     // const [showModal, toggleShowModal] = useState(false);
     const [refreshing, toggleRefreshing] = useState(false);
 
+    // context
+    const toggleTheme = useThemeStore(state => state.toggleTheme);
+
     // state selectors
-    const rooms = useStore(state => state.rooms);
+    const rooms = useRoomStore(state => state.rooms);
 
     // useEffect(() => {
     //     if (allJobs.length <= 0) {
@@ -68,7 +70,14 @@ const Rooms = ({ navigation }) => {
     // };
 
     /* Template */
-    return <View />;
+    return (
+        <Layout style={{ flex: 1, justifyContent: 'center' }}>
+            <Text category="h4">DETAILS</Text>
+            <Button style={{ marginVertical: 4 }} onPress={toggleTheme}>
+                TOGGLE THEME
+            </Button>
+        </Layout>
+    );
 };
 
 export default Rooms;
