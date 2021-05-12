@@ -5,11 +5,11 @@ import globalStyles from '../../assets/css/global-styles';
 
 const styles = StyleSheet.create({
     mainHeaderContainer: {
-        height: 100,
+        height: 140,
         marginBottom: -20,
     },
     headerContainerStyle: {
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         height: '100%',
         alignContent: 'space-between',
         borderBottomLeftRadius: 20,
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: 'white',
         textAlign: 'center',
+        marginBottom: 40,
     },
     roomList: {},
     placeholderContainer: {

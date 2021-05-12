@@ -8,12 +8,13 @@ import {
     Text,
     View,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { ROOM_CARD_MODE } from '../../static/enums';
 import RoomCard from '../../components/RoomCard';
-import styles from './styles';
 import globalStyles from '../../assets/css/global-styles';
+import styles from './styles';
 import RoomsAPI from '../../api/rooms-api';
 import COLORS from '../../static/colors';
 
@@ -24,6 +25,7 @@ const Room = props => {
     const [room, setRoom] = useState();
     const [isLoading, setLoading] = useState(false);
 
+    // Fetch room details on mount
     useEffect(() => {
         if (!room && roomId) {
             fetchRoom();
@@ -37,7 +39,6 @@ const Room = props => {
             .then(res => {
                 if (res.status === 200) {
                     setRoom(res.data);
-                    console.log('res.data', res.data);
                     setLoading(false);
                 }
             })
@@ -103,6 +104,16 @@ const Room = props => {
                 }}
                 style={styles.imageHeader}
             />
+            <LinearGradient
+                colors={['rgba(51, 205, 255, 0.4)', 'transparent']}
+                style={{
+                    left: 0,
+                    right: 0,
+                    height: 90,
+                    margin: -55,
+                    zIndex: -5,
+                }}
+            />
             <Pressable
                 onPress={() => navigation.goBack()}
                 style={styles.backButton}>
@@ -111,6 +122,8 @@ const Room = props => {
             <View style={styles.cardContainer}>
                 <RoomCard mode={ROOM_CARD_MODE.DETAIL} room={room} />
             </View>
+            <View style={styles.cardShadow1} />
+            <View style={styles.cardShadow2} />
             <RoomDetails />
         </ScrollView>
     );

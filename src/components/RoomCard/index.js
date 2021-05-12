@@ -63,7 +63,7 @@ const RoomCard = props => {
                 <LinearGradient
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
-                    colors={['#33CDFF', '#27c2f5']}
+                    colors={['#33CDFF', '#22b3e3']}
                     style={styles.listCardButton}>
                     <Text style={styles.listCardButtonText}>Book a room</Text>
                 </LinearGradient>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-    ActivityIndicator,
     Alert,
     FlatList,
     RefreshControl,
     Text,
     View,
+    StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -17,7 +17,6 @@ import globalStyles from '../../assets/css/global-styles';
 import styles from './styles';
 
 import RoomCard from '../../components/RoomCard';
-import COLORS from '../../static/colors';
 
 const Rooms = ({ navigation }) => {
     // state selectors
@@ -25,6 +24,12 @@ const Rooms = ({ navigation }) => {
     const setRooms = useStore(state => state.setRooms);
     const [isLoading, setLoading] = useState(false);
 
+    // Setup StatusBar
+    StatusBar.setBarStyle('light-content');
+    StatusBar.setTranslucent(true);
+    StatusBar.setBackgroundColor('transparent');
+
+    // Fetch rooms on mount
     useEffect(() => {
         if (rooms.length <= 0) {
             fetchRooms();

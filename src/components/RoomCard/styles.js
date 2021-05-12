@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     listCardContainer: {
         width: '90%',
         marginBottom: 20,
-        borderRadius: 20,
+        borderRadius: 10,
         backgroundColor: 'white',
         overflow: 'hidden',
         justifyContent: 'center',
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 20,
         paddingVertical: 15,
-        borderRadius: 20,
-        backgroundColor: COLORS.primary,
+        borderRadius: 50,
     },
     listCardButtonText: {
         ...globalStyles.text,
