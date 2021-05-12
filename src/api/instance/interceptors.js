@@ -23,7 +23,7 @@ const apiInterceptor = instance => {
             };
         },
         error => {
-            console.log('error', error);
+            console.log('Error in request: ', error);
             // Do something with request error
             return Promise.reject(error);
         },

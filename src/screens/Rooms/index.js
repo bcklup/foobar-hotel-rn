@@ -36,7 +36,6 @@ const Rooms = ({ navigation }) => {
         setLoading(true);
         RoomsAPI.getRooms()
             .then(res => {
-                console.log('res', res);
                 if (res.status === 200) {
                     setRooms(res.data);
                     setLoading(false);

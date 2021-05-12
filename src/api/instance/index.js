@@ -33,7 +33,6 @@ export const API = {
     },
 
     get(endpoint) {
-        console.log('reaches');
         return instance.get(endpoint);
     },
 

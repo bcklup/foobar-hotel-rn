@@ -35,9 +35,9 @@ const Room = props => {
         setLoading(true);
         RoomsAPI.getRoom(roomId)
             .then(res => {
-                console.log('res', res);
                 if (res.status === 200) {
                     setRoom(res.data);
+                    console.log('res.data', res.data);
                     setLoading(false);
                 }
             })
