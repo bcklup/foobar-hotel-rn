@@ -12,7 +12,7 @@ Setup your `.env` file as below:
 
 # In-App Screenshots
 
-![Rooms Screen](https://user-images.githubusercontent.com/23238488/117866375-a452ea00-b2c9-11eb-9818-69414c08b5a1.png)
-![Room Details Screen](https://user-images.githubusercontent.com/23238488/117866428-b765ba00-b2c9-11eb-909d-42ffc3257887.png)
+![Rooms Screen](https://user-images.githubusercontent.com/23238488/117913202-89a56300-b313-11eb-9b4d-24d7b5be042c.png)
+![Room Details Screen](https://user-images.githubusercontent.com/23238488/117913219-9629bb80-b313-11eb-9152-e11db44e68ee.png)
 
 _All images as of 05/11/21_
