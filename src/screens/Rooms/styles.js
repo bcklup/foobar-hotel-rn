@@ -15,6 +15,12 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
     },
+    headerGradient: {
+        left: 0,
+        right: 0,
+        height: 90,
+        margin: -35,
+    },
     headerTextStyle: {
         ...globalStyles.bold,
         fontSize: 25,

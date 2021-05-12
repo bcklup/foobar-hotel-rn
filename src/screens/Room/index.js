@@ -104,16 +104,6 @@ const Room = props => {
                 }}
                 style={styles.imageHeader}
             />
-            <LinearGradient
-                colors={['rgba(51, 205, 255, 0.4)', 'transparent']}
-                style={{
-                    left: 0,
-                    right: 0,
-                    height: 90,
-                    margin: -55,
-                    zIndex: -5,
-                }}
-            />
             <Pressable
                 onPress={() => navigation.goBack()}
                 style={styles.backButton}>

@@ -17,7 +17,7 @@ export default {
     /* Containers */
     mainContainer: {
         flex: 1,
-        backgroundColor: '#f0f3f5',
+        backgroundColor: '#e9edf0',
     },
 
     container: {

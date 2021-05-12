@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     detailsBody: {
-        marginTop: 120,
+        marginTop: 100,
     },
     sectionContainer: {
         margin: 15,

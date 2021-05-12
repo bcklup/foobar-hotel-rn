@@ -113,24 +113,8 @@ const Rooms = ({ navigation }) => {
             </LinearGradient>
             <LinearGradient
                 colors={['rgba(51, 205, 255, 0.4)', 'transparent']}
-                style={{
-                    left: 0,
-                    right: 0,
-                    height: 90,
-                    margin: -35,
-                }}>
-                <View
-                    style={{
-                        backgroundColor: 'white',
-                        paddingVertical: 0,
-                        paddingHorizontal: 20,
-                        marginHorizontal: 20,
-                        borderRadius: 15,
-                        marginTop: 25,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                    }}></View>
-            </LinearGradient>
+                style={styles.headerGradient}
+            />
         </View>
     );
 
