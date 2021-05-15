@@ -8,7 +8,7 @@
 
 Setup your `.env` file as below:
 
-    API_URL=https://foobar-hotel-api.herokuapp.com
+    API_URL=<your API goes here. public demo uri send a PM>
 
 # In-App Screenshots
 
